@@ -1,0 +1,59 @@
+@if (message()) {
+  <div class="message-succes" role="status">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+         stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <circle cx="12" cy="12" r="10" />
+      <path d="M8 12.5l3 3 5-6" />
+    </svg>
+    {{ message() }}
+  </div>
+}
+
+<section class="intro">
+  <h1 class="intro__titre">Ma liste de films</h1>
+  <p class="intro__texte">
+    Retrouvez ici tous les films de votre carnet. Cliquez sur une carte pour voir
+    ses détails, la modifier ou la supprimer, ou ajoutez un nouveau film depuis le menu.
+  </p>
+</section>
+
+@if (films().length > 0) {
+  <div class="films-container">
+    @for (item of films(); track item.id) {
+      <a class="film-card" [routerLink]="['/film', item.id]">
+        <div class="film-card__header">
+          <span class="film-card__id">#{{ item.id }}</span>
+          <span
+            class="film-card__statut"
+            [ngClass]="{
+              'film-card__statut--a-voir': item.statut === 'à voir',
+              'film-card__statut--en-cours': item.statut === 'en cours',
+              'film-card__statut--vu': item.statut === 'vu'
+            }">
+            {{ item.statut }}
+          </span>
+        </div>
+
+        <h3 class="film-card__title">{{ item.titre }}</h3>
+
+        <div class="film-card__infos">
+          <p><span class="label">Année :</span> {{ item.annee }}</p>
+          <p><span class="label">Réalisateur :</span> {{ item.realisateur }}</p>
+        </div>
+      </a>
+    }
+  </div>
+} @else {
+  <div class="empty-message">
+    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+         stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M22 12h-6l-2 3h-4l-2-3H2" />
+      <path d="M5.5 5.1L2 12v6a2 2 0 002 2h16a2 2 0 002-2v-6l-3.5-6.9A2 2 0 0016.7 4H7.3a2 2 0 00-1.8 1.1z" />
+    </svg>
+    <p>Aucun film pour l'instant</p>
+  </div>
+}
+
+<p class="films-count">
+  Nombre de films enregistrés : <strong>{{ films().length }}</strong>
+</p>

@@ -1,0 +1,50 @@
+<section class="ajouter">
+  <h1 class="ajouter__titre">{{ titrePage }}</h1>
+  <p class="ajouter__intro">Renseignez les informations du film.</p>
+
+  <form class="formulaire" [formGroup]="form" (ngSubmit)="envoyer()" novalidate>
+    <div class="champ">
+      <label for="titre">Titre</label>
+      <input id="titre" type="text" formControlName="titre" placeholder="Ex. Le Dernier Front" />
+      @if (champInvalide('titre')) {
+        <small class="erreur">Le titre est obligatoire.</small>
+      }
+    </div>
+
+    <div class="champ">
+      <label for="annee">Année</label>
+      <input id="annee" type="number" formControlName="annee" />
+      @if (champInvalide('annee')) {
+        <small class="erreur">Saisissez une année réaliste (entre 1888 et {{ anneeMax }}).</small>
+      }
+    </div>
+
+    <div class="champ">
+      <label for="realisateur">Réalisateur</label>
+      <input id="realisateur" type="text" formControlName="realisateur" placeholder="Ex. Mr TAGNE" />
+      @if (champInvalide('realisateur')) {
+        <small class="erreur">Le réalisateur est obligatoire.</small>
+      }
+    </div>
+
+    <div class="champ">
+      <label for="statut">Statut</label>
+      <select id="statut" formControlName="statut">
+        @for (s of statuts; track s) {
+          <option [value]="s">{{ s }}</option>
+        }
+      </select>
+    </div>
+
+    <div class="actions">
+      <button type="submit" class="bouton bouton--principal" [disabled]="form.invalid">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M20 6L9 17l-5-5" />
+        </svg>
+        {{ libelleBouton }}
+      </button>
+      <a class="bouton bouton--secondaire" [routerLink]="lienAnnuler">Annuler</a>
+    </div>
+  </form>
+</section>

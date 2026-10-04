@@ -1,0 +1,51 @@
+<footer class="footer">
+  <div class="footer__inner">
+    <div class="footer__colonne footer__marque">
+      <a class="footer__logo" routerLink="/accueil">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="2" y="2" width="20" height="20" rx="2.5" />
+          <path d="M7 2v20M17 2v20M2 12h20M2 7h5M2 17h5M17 17h5M17 7h5" />
+        </svg>
+        <span>CinéListe</span>
+      </a>
+      <p class="footer__texte">Votre carnet personnel de films : à voir, en cours ou déjà vus.</p>
+    </div>
+
+    <nav class="footer__colonne" aria-label="Liens du pied de page">
+      <h2 class="footer__titre">Navigation</h2>
+      <a class="footer__lien" routerLink="/accueil">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M3 11l9-8 9 8" />
+          <path d="M5 10v10h14V10" />
+          <path d="M10 20v-6h4v6" />
+        </svg>
+        Accueil
+      </a>
+      <a class="footer__lien" routerLink="/ajouter">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 5v14M5 12h14" />
+        </svg>
+        Ajouter un film
+      </a>
+    </nav>
+
+    <div class="footer__colonne">
+      <h2 class="footer__titre">Mon carnet</h2>
+      <p class="footer__stat">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="2" y="2" width="20" height="20" rx="2.5" />
+          <path d="M7 2v20M17 2v20M2 12h20" />
+        </svg>
+        <strong>{{ films().length }}</strong> film(s) enregistré(s)
+      </p>
+    </div>
+  </div>
+
+  <div class="footer__bas">
+    <p>© {{ annee }} CinéListe — Projet fil rouge Angular</p>
+  </div>
+</footer>
